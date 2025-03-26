@@ -2,15 +2,21 @@ package com.gildedrose;
 
 import com.gildedrose.service.AgedBrieService;
 import com.gildedrose.service.BackstagePassesService;
+import com.gildedrose.service.NormalItemService;
+import com.gildedrose.service.SulfarasService;
 
 class GildedRose {
     Item[] items;
     private AgedBrieService agedBrieService;
     private BackstagePassesService backstagePassesService;
+    private SulfarasService sulfarasService;
+    private NormalItemService normalItemService;
     public GildedRose(Item[] items) {
         this.items = items;
         this.agedBrieService = new AgedBrieService();
         this.backstagePassesService = new BackstagePassesService();
+        this.sulfarasService = new SulfarasService();
+        this.normalItemService = new NormalItemService();
     }
 
     public void updateQuality() {
@@ -18,7 +24,8 @@ class GildedRose {
             switch (items[i].name){
                 case AgedBrieService.NAME ->agedBrieService.updateItem(items[i]);
                 case BackstagePassesService.NAME -> backstagePassesService.updateItem(items[i]);
-                default -> oldMethod(i);
+                case SulfarasService.NAME -> sulfarasService.updateItem(items[i]);
+                default -> normalItemService.updateItem(items[i]);
             }
         }
     }
