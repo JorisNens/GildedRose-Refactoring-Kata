@@ -6,12 +6,7 @@ public class ConjuredService extends ItemUpdaterService {
 
     @Override
     public int updateQuality(int quality, int sellIn) {
-        int qualityDecrease= sellIn < 0 ? 4 : 2;
-        return Math.max(0, quality - qualityDecrease);
-    }
-
-    @Override
-    public int updateSellIn(int sellIn) {
-        return sellIn - 1;
+        int qualityDecreaseStep= sellIn < 0 ? 4 : 2;
+        return Math.max(MIN_QUALITY, quality - qualityDecreaseStep);
     }
 }

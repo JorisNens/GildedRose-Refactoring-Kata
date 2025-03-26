@@ -5,22 +5,18 @@ public class BackstagePassesService extends ItemUpdaterService {
 
     @Override
     public int updateQuality(int quality, int sellIn) {
-        int qualityIncrease = 1;
+        int qualityImprovementStep;
         if (sellIn < 0) {
             return  0;
         }
-        if (sellIn < 10) {
-            qualityIncrease = 2;
-        }
         if (sellIn < 5) {
-            qualityIncrease = 3;
+            qualityImprovementStep = 3;
+        }else if (sellIn < 10) {
+            qualityImprovementStep = 2;
+        }else{
+            qualityImprovementStep = 1;
         }
 
-        return Math.min(50, quality + qualityIncrease);
-    }
-
-    @Override
-    public int updateSellIn(int sellIn) {
-        return sellIn - 1;
+        return Math.min(MAX_QUALITY, quality + qualityImprovementStep);
     }
 }

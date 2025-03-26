@@ -5,12 +5,7 @@ public class AgedBrieService extends ItemUpdaterService {
 
     @Override
     public int updateQuality(int quality, int sellIn) {
-        int improvementOfQuality = sellIn < 0?2:1;
-        return Math.min(50, quality+improvementOfQuality);
-    }
-
-    @Override
-    public int updateSellIn(int sellIn) {
-        return sellIn - 1;
+        int qualityImprovementStep = sellIn < 0 ? 2 : 1;
+        return Math.min(MAX_QUALITY, quality + qualityImprovementStep);
     }
 }
