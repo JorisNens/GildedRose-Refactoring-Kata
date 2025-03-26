@@ -14,13 +14,13 @@ class GildedRose {
     Item[] items;
     private final Map<String, ItemUpdaterService> serviceMap;
     private Map<String, ItemUpdaterService> initializeServiceMap() {
-        Map<String, ItemUpdaterService> serviceMap = new HashMap<>();
-        serviceMap.put(AgedBrieService.NAME, new AgedBrieService());
-        serviceMap.put(BackstagePassesService.NAME, new BackstagePassesService());
-        serviceMap.put(SulfarasService.NAME, new SulfarasService());
-        serviceMap.put(ConjuredService.NAME, new ConjuredService());
-        serviceMap.put(NormalItemService.NAME, new NormalItemService());
-        return serviceMap;
+        Map<String, ItemUpdaterService> map = new HashMap<>();
+        map.put(AgedBrieService.NAME, new AgedBrieService());
+        map.put(BackstagePassesService.NAME, new BackstagePassesService());
+        map.put(SulfarasService.NAME, new SulfarasService());
+        map.put(ConjuredService.NAME, new ConjuredService());
+        map.put(NormalItemService.NAME, new NormalItemService());
+        return map;
     }
     public GildedRose(Item[] items) {
         this.items = items;
