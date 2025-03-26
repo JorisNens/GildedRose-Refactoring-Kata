@@ -1,11 +1,12 @@
 package com.gildedrose.service;
 
-public class NormalItemService extends ItemUpdaterService {
-    public static final String name = "Normal";
+public class ConjuredService extends ItemUpdaterService {
+    public static final String NAME = "Conjured Mana Cake";
+
 
     @Override
     public int updateQuality(int quality, int sellIn) {
-        int qualityDecrease= sellIn < 0 ? 2 : 1;
+        int qualityDecrease= sellIn < 0 ? 4 : 2;
         return Math.max(0, quality - qualityDecrease);
     }
 
