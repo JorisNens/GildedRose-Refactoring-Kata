@@ -2,7 +2,7 @@ full_name:Gilded Rose Refactoring Kata
 
 # set your preferred editor and diff tool.
 view_program:subl
-diff_program:meld
+diff_program:code
 
 # Settings for the Python version
 #executable:${TEXTTEST_HOME}/python/texttest_fixture.py
