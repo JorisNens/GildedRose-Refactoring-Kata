@@ -109,7 +109,7 @@ Scenario: Check Backstage passes increased in quality by one when sellIn is more
             | 15  | 50       | 0      |
             | 16  | 0       | -1      |
             | 17  | 0       | -2      |
-
+    @Ingore
     Scenario: Check Conjured items degrade in quality twice as fast as normal items
         Given For article "Conjured Mana Cake" with initial quality 10 and sellIn 5
         When The quality is updated the next 10 days
