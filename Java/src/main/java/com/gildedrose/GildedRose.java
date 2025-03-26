@@ -13,17 +13,18 @@ import java.util.Map;
 class GildedRose {
     Item[] items;
     private final Map<String, ItemUpdaterService> serviceMap;
-    private GildedRose() {
-        this.serviceMap = new HashMap<>();
-        this.serviceMap.put(AgedBrieService.NAME, new AgedBrieService());
-        this.serviceMap.put(BackstagePassesService.NAME, new BackstagePassesService());
-        this.serviceMap.put(SulfarasService.NAME, new SulfarasService());
-        this.serviceMap.put(ConjuredService.NAME, new ConjuredService());
-        this.serviceMap.put(NormalItemService.NAME, new NormalItemService());
+    private Map<String, ItemUpdaterService> initializeServiceMap() {
+        Map<String, ItemUpdaterService> serviceMap = new HashMap<>();
+        serviceMap.put(AgedBrieService.NAME, new AgedBrieService());
+        serviceMap.put(BackstagePassesService.NAME, new BackstagePassesService());
+        serviceMap.put(SulfarasService.NAME, new SulfarasService());
+        serviceMap.put(ConjuredService.NAME, new ConjuredService());
+        serviceMap.put(NormalItemService.NAME, new NormalItemService());
+        return serviceMap;
     }
     public GildedRose(Item[] items) {
-        this();
         this.items = items;
+        this.serviceMap = initializeServiceMap();
     }
 
 
