@@ -1,7 +1,7 @@
 package com.gildedrose.service;
 
 public class NormalItemService extends ItemUpdaterService {
-    public static String name = "Normal";
+    public static final String name = "Normal";
 
     @Override
     public int updateQuality(int quality, int sellIn) {

@@ -1,26 +1,30 @@
 package com.gildedrose;
 
 import com.gildedrose.service.AgedBrieService;
+import com.gildedrose.service.BackstagePassesService;
 
 class GildedRose {
     Item[] items;
     private AgedBrieService agedBrieService;
+    private BackstagePassesService backstagePassesService;
     public GildedRose(Item[] items) {
         this.items = items;
         this.agedBrieService = new AgedBrieService();
+        this.backstagePassesService = new BackstagePassesService();
     }
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             switch (items[i].name){
-                case AgedBrieService.name ->agedBrieService.updateItem(items[i]);
+                case AgedBrieService.NAME ->agedBrieService.updateItem(items[i]);
+                case BackstagePassesService.NAME -> backstagePassesService.updateItem(items[i]);
                 default -> oldMethod(i);
             }
         }
     }
 
     private void oldMethod(int i) {
-        if(items[i].name.equals(AgedBrieService.name)){
+        if(items[i].name.equals(AgedBrieService.NAME)){
             agedBrieService.updateItem(items[i]);
             return;
         }
