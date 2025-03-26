@@ -3,34 +3,31 @@ package com.gildedrose;
 import com.gildedrose.service.AgedBrieService;
 import com.gildedrose.service.BackstagePassesService;
 import com.gildedrose.service.ConjuredService;
+import com.gildedrose.service.ItemUpdaterService;
 import com.gildedrose.service.NormalItemService;
 import com.gildedrose.service.SulfarasService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class GildedRose {
     Item[] items;
-    private AgedBrieService agedBrieService;
-    private BackstagePassesService backstagePassesService;
-    private SulfarasService sulfarasService;
-    private NormalItemService normalItemService;
-    private ConjuredService conjuredService;
+    private final Map<String, ItemUpdaterService> serviceMap;
     public GildedRose(Item[] items) {
         this.items = items;
-        this.agedBrieService = new AgedBrieService();
-        this.backstagePassesService = new BackstagePassesService();
-        this.sulfarasService = new SulfarasService();
-        this.normalItemService = new NormalItemService();
-        this.conjuredService = new ConjuredService();
+        this.serviceMap = new HashMap<>();
+        this.serviceMap.put(AgedBrieService.NAME, new AgedBrieService());
+        this.serviceMap.put(BackstagePassesService.NAME, new BackstagePassesService());
+        this.serviceMap.put(SulfarasService.NAME, new SulfarasService());
+        this.serviceMap.put(ConjuredService.NAME, new ConjuredService());
+        this.serviceMap.put(NormalItemService.NAME, new NormalItemService());
+
     }
 
     public void updateQuality() {
         for(Item item : items){
-            switch (item.name){
-                case AgedBrieService.NAME ->agedBrieService.updateItem(item);
-                case BackstagePassesService.NAME -> backstagePassesService.updateItem(item);
-                case SulfarasService.NAME -> sulfarasService.updateItem(item);
-                case ConjuredService.NAME -> conjuredService.updateItem(item);
-                default -> normalItemService.updateItem(item);
-            }
+            ItemUpdaterService service = serviceMap.getOrDefault(item.name, serviceMap.get(NormalItemService.NAME));
+            service.updateItem(item);
         }
     }
 }
